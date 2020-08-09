@@ -1,7 +1,6 @@
-(ns textp.doc.alpha.core
+(ns fr.jeremyschoffen.textp.alpha.doc.core
   (:require [clojure.spec.alpha :as s]
-            [textp.lib.alpha.core :as lib]
-            [textp.html.alpha.tags :as tags]))
+            [fr.jeremyschoffen.textp.alpha.lib.core :as lib]))
 
 
 (defn make-link
@@ -18,4 +17,7 @@
          (cond-> link
                  text' (assoc :content text')))))))
 
-;; TODO tags for clojar like badges
+
+
+
+;; TODO tags for clojar-like badges

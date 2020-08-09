@@ -1,9 +1,8 @@
-(ns textp.doc.alpha.markdown-compiler
+(ns fr.jeremyschoffen.textp.alpha.doc.markdown-compiler
   (:require
-    [textp.compile.alpha.core :refer [emit!] :as compile]
-    [textp.compile.alpha.text :as compile-text]
-    [textp.html.alpha.tags :as tags]
-    [textp.html.alpha.compiler :as html-compiler]))
+    [fr.jeremyschoffen.textp.alpha.compile.core :refer [emit!]]
+    [fr.jeremyschoffen.textp.alpha.compile.text :as compile-text]
+    [fr.jeremyschoffen.textp.alpha.html.compiler :as html-compiler]))
 
 
 (declare compile!)
@@ -53,6 +52,32 @@
       (compile-seq! x)
       (compile! x))))
 
+
+;;----------------------------------------------------------------------------------------------------------------------
+;; Sepcific stuff
+;;----------------------------------------------------------------------------------------------------------------------
+(defn emit-newline! [] (emit! "\n"))
+
+
+(defn emit-block! [type text]
+  (emit! "```" type)
+  (emit-newline!)
+  (emit! text)
+  (emit-newline!)
+  (emit! "```"))
+
+
+(defmethod emit-tag! :md-block [node]
+  (let [{:keys [attrs content]} node
+        type (get attrs :type "text")
+        content (doc->md content)]
+    (emit-block! type content)))
+
+
+(defmethod emit-tag! :splice [node]
+  (compile-seq! (:content node)))
+
+
 (comment
   (println
     (doc->md [{:type :comment
@@ -60,6 +85,15 @@
               "\n"
               {:tag :a
                :attrs {:href "www.toto.com"}
+               :content ["toto"]}
+
+              {:tag :splice
+               :attrs {:href "www.toto.com"}
+               :content ["toto"]}]))
+
+  (println
+    (doc->md [{:tag :md-block
+               :attrs {:type "clojure"}
                :content ["toto"]}]))
 
   (println
