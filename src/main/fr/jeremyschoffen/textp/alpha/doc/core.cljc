@@ -1,6 +1,6 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.core
   (:require [clojure.spec.alpha :as s]
-            [fr.jeremyschoffen.textp.alpha.lib.core :as lib]))
+            [fr.jeremyschoffen.textp.alpha.lib.tag-utils :as lib]))
 
 
 (defn make-link

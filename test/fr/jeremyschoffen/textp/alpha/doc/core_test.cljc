@@ -1,6 +1,7 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.core-test
   (:require
-    [clojure.test :refer [deftest is are]]
+    #?(:clj [clojure.test :refer [deftest is are]]
+       :cljs [cljs.test :refer-macros [deftest is are]])
     [fr.jeremyschoffen.textp.alpha.doc.core :as doc]
     [fr.jeremyschoffen.textp.alpha.doc.markdown-compiler :as compiler]))
 

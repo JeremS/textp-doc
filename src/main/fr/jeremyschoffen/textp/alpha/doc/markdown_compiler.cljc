@@ -1,7 +1,6 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.markdown-compiler
   (:require
-    [fr.jeremyschoffen.textp.alpha.compile.core :refer [emit!]]
-    [fr.jeremyschoffen.textp.alpha.compile.text :as compile-text]
+    [fr.jeremyschoffen.textp.alpha.lib.compilation :refer [emit!] :as compile]
     [fr.jeremyschoffen.textp.alpha.html.compiler :as html-compiler]))
 
 
@@ -22,7 +21,7 @@
 (defmethod emit-tag! :a [{:keys [attrs content]}]
   (let [href (get attrs :href \#)
         content (if (seq content)
-                  (compile-text/text-environment
+                  (compile/text-environment
                     (compile-seq! content))
                   href)]
     (emit! \[ content \] \( href \))))
@@ -47,7 +46,7 @@
 
 
 (defn doc->md [x]
-  (compile-text/text-environment
+  (compile/text-environment
     (if (sequential? x)
       (compile-seq! x)
       (compile! x))))
