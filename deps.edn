@@ -1,7 +1,9 @@
 {:paths ["src/main/"]
 
- :deps {lib  {:local/root "../lib"}
-        html {:local/root "../html"}}
+ :deps {fr.jeremyschoffen/textp-eval   {:local/root "../eval"}
+        fr.jeremyschoffen/textp-html   {:local/root "../html"}
+        fr.jeremyschoffen/textp-lib    {:local/root "../lib"}
+        fr.jeremyschoffen/textp-reader {:local/root "../reader"}}
 
  :aliases {:dev {:extra-paths ["dev"]
                  :extra-deps {nrepl/nrepl      {:mvn/version "0.7.0"}
@@ -13,4 +15,7 @@
 
            :test {:extra-paths ["test"]
                   :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-541"}
-                               lambdaisland/kaocha-cljs {:mvn/version "0.0-51"}}}}}
+                               lambdaisland/kaocha-cljs {:mvn/version "0.0-51"}}}
+
+           :build {:extra-paths ["scripts" "src/doc"]
+                   :extra-deps {fr.jeremyschoffen/mbt-alpha    {:mvn/version "0"}}}}}

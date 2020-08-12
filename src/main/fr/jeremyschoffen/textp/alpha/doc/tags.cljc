@@ -1,7 +1,8 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.tags
   (:require
     [fr.jeremyschoffen.textp.alpha.lib.tag-utils :as textp-lib :include-macros true]
-    [fr.jeremyschoffen.textp.alpha.lib.input :as textp-in]))
+    [fr.jeremyschoffen.textp.alpha.lib.input :as textp-in]
+    [fr.jeremyschoffen.textp.alpha.html.tags :as tags]))
 
 
 (textp-lib/def-xml-tag md-block
@@ -57,3 +58,8 @@
             git-blocks (make-git-coord-blocks git-coords)
             blocks (into maven-blocks git-blocks)]
         (apply splice (interpose "\n" blocks))))))
+
+
+(defn copyright-char [& args]
+  {:tag ::tags/un-escaped
+   :content ["&copy;"]})

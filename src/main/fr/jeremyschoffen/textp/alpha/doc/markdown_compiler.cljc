@@ -1,7 +1,8 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.markdown-compiler
   (:require
     [fr.jeremyschoffen.textp.alpha.lib.compilation :refer [emit!] :as compile]
-    [fr.jeremyschoffen.textp.alpha.html.compiler :as html-compiler]))
+    [fr.jeremyschoffen.textp.alpha.html.compiler :as html-compiler]
+    [fr.jeremyschoffen.textp.alpha.html.tags :as tags]))
 
 
 (declare compile!)
@@ -25,6 +26,10 @@
                     (compile-seq! content))
                   href)]
     (emit! \[ content \] \( href \))))
+
+
+(defmethod emit-tag! ::tags/un-escaped [node]
+  (html-compiler/emit-unescaped! node))
 
 
 (defmulti emit-special! :type)
@@ -88,7 +93,10 @@
 
               {:tag :splice
                :attrs {:href "www.toto.com"}
-               :content ["toto"]}]))
+               :content ["toto"]}
+
+              {:tag ::tags/un-escaped
+               :content ["&copy;"]}]))
 
   (println
     (doc->md [{:tag :md-block
