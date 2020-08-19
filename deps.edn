@@ -3,7 +3,9 @@
  :deps {fr.jeremyschoffen/textp-eval-alpha   {:mvn/version "0"}
         fr.jeremyschoffen/textp-html-alpha   {:mvn/version "0"}
         fr.jeremyschoffen/textp-lib-alpha    {:mvn/version "0"}
-        fr.jeremyschoffen/textp-reader-alpha {:mvn/version "0"}}
+        fr.jeremyschoffen/textp-reader-alpha {:mvn/version "0"}
+        exoscale/ex {:mvn/version "0.3.13"}}
+
 
  :aliases {:clj {:extra-deps {org.clojure/clojure {:mvn/version "1.10.1"}}}
 

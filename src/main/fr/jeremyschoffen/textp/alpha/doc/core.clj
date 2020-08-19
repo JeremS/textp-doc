@@ -2,6 +2,7 @@
   (:require
     [clojure.java.io :as io]
     [clojure.spec.alpha :as s]
+    [exoscale.ex :as ex]
     [fr.jeremyschoffen.textp.alpha.doc.markdown-compiler :as compiler]
     [fr.jeremyschoffen.textp.alpha.eval.core :as eval]
     [fr.jeremyschoffen.textp.alpha.eval.env.clojure]
@@ -32,12 +33,20 @@
 ;;----------------------------------------------------------------------------------------------------------------------
 (defn wrap-phase [f phase-name]
   (fn [doc]
-    (try
-      (f doc)
-      (catch Exception e
-        (throw (ex-info "Error while making document."
-                        {:phase phase-name}
-                        e))))))
+    (let [msg "Error while making document."
+          ex-data {:phase phase-name}]
+      (ex/try+
+        (f doc)
+
+        (catch ::ex/incorrect {:keys [type] :as data}
+          (throw (ex/ex-info msg
+                             type
+                             (merge ex-data data)
+                             (-> data meta ::ex/exception))))
+        (catch Exception e
+          (throw (ex-info msg
+                          ex-data
+                          e)))))))
 
 
 (defn slurp-resource* [p]
@@ -63,7 +72,6 @@
         read-document
         eval-doc
         doc->md)))
-
 
 
 ;; TODO tags for clojar-like badges
