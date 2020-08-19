@@ -3,10 +3,4 @@
               :id :unit-clj
               :source-paths ["src/main"]
               :test-paths ["test"]
-              :ns-patterns ["-test$"]}
-
-             {:id :unit-cljs
-              :type :kaocha.type/cljs
-              :source-paths ["src/main"]
-              :test-paths ["test"]
               :ns-patterns ["-test$"]}]}

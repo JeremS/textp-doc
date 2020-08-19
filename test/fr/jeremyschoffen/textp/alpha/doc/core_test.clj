@@ -1,9 +1,7 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.core-test
   (:require
-    #?(:clj [clojure.test :refer [deftest is are]]
-       :cljs [cljs.test :refer-macros [deftest is are]])
-    [fr.jeremyschoffen.textp.alpha.doc.core :as doc]
-    [fr.jeremyschoffen.textp.alpha.doc.markdown-compiler :as compiler]))
+    [clojure.test :refer [deftest is are]]
+    [fr.jeremyschoffen.textp.alpha.doc.core :as doc]))
 
 
 (def home (doc/make-link "www.home.com"))
@@ -21,4 +19,3 @@
     (home {:tag :tag-args-txt
            :content ["home"]})
     {:tag :a, :attrs {:href "www.home.com"}, :content ["home"]}))
-

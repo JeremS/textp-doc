@@ -1,8 +1,7 @@
 (ns fr.jeremyschoffen.textp.alpha.doc.markdown-compiler-test
   (:require
-    #?(:clj [clojure.test :refer [deftest is]]
-       :cljs [cljs.test :refer-macros [deftest is]])
-    [fr.jeremyschoffen.textp.alpha.lib.input :as textp-in :include-macros true]
+    [clojure.test :refer [deftest is]]
+    [fr.jeremyschoffen.textp.alpha.lib.input :as textp-in]
     [fr.jeremyschoffen.textp.alpha.doc.core :as doc]
     [fr.jeremyschoffen.textp.alpha.doc.markdown-compiler :as compiler]
     [fr.jeremyschoffen.textp.alpha.doc.tags :as tags]))
@@ -26,8 +25,8 @@
          "```clojure\n(def x 1)\n```")))
 
 
-#?(:clj (deftest project-coords-blocks
+(deftest project-coords-blocks
 
-          (is (= (textp-in/with-input {:project/maven-coords '{fr.jeremyschoffen/textp {:mvn/version "0"}}}
-                                      (compiler/doc->md (tags/project-coords)))
-                 "Deps coords:\n```clojure\n#:fr.jeremyschoffen{textp #:mvn{:version \"0\"}}\n```\nLein coords:\n```clojure\n[fr.jeremyschoffen/textp \"0\"]\n```"))))
+  (is (= (textp-in/with-input {:project/maven-coords '{fr.jeremyschoffen/textp {:mvn/version "0"}}}
+           (compiler/doc->md (tags/project-coords)))
+         "Deps coords:\n```clojure\n#:fr.jeremyschoffen{textp #:mvn{:version \"0\"}}\n```\nLein coords:\n```clojure\n[fr.jeremyschoffen/textp \"0\"]\n```")))
