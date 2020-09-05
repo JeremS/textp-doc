@@ -31,7 +31,9 @@
     (let [sym (-> coords keys first)
           version (-> coords vals first vals first)]
       ["Deps coords:"
-       (clojure-block* (pr-str coords))
+       (clojure-block*
+         (binding [*print-namespace-maps* false]
+           (pr-str coords)))
 
        "Lein coords:"
        (clojure-block* (pr-str [sym version]))])
