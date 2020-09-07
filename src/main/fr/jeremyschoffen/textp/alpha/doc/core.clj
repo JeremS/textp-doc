@@ -28,6 +28,9 @@
                  text' (assoc :content text')))))))
 
 
+(defn cljdoc-api-link [group-id artefact-name var-name]
+  (format "https://cljdoc.org/d/%s/%s/CURRENT/api/%s#%s" group-id artefact-name (namespace var-name) (name var-name)))
+
 ;;----------------------------------------------------------------------------------------------------------------------
 ;; Document generation
 ;;----------------------------------------------------------------------------------------------------------------------

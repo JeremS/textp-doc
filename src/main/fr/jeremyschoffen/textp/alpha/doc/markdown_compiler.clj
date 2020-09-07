@@ -5,13 +5,15 @@
     [fr.jeremyschoffen.textp.alpha.html.tags :as tags]))
 
 
+(def emit-tag! html-compiler/emit-tag!)
+
 (derive ::md ::html-compiler/html)
 
 (defn emit-newline! [] (emit! "\n"))
 
 
 (defmethod html-compiler/emit-tag!  [::md :a] [{:keys [attrs content]}]
-  (let [href (get attrs :href) ;;todo just go nil
+  (let [href (get attrs :href)
         content (if (seq content)
                   (html-compiler/doc->str content)
                   href)]

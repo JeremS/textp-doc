@@ -29,4 +29,4 @@
 
   (is (= (textp-in/with-input {:project/maven-coords '{fr.jeremyschoffen/textp {:mvn/version "0"}}}
            (compiler/doc->md (tags/project-coords)))
-         "Deps coords:\n```clojure\n#:fr.jeremyschoffen{textp #:mvn{:version \"0\"}}\n```\nLein coords:\n```clojure\n[fr.jeremyschoffen/textp \"0\"]\n```")))
+         "Deps coords:\n```clojure\n{fr.jeremyschoffen/textp {:mvn/version \"0\"}}\n```\nLein coords:\n```clojure\n[fr.jeremyschoffen/textp \"0\"]\n```")))

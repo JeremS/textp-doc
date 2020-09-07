@@ -41,8 +41,11 @@
 
 (defn- make-git-coord-blocks [coords]
   (if coords
-    ["Git coords:"])
-  [])
+    ["Git coords:"
+     (clojure-block*
+       (binding [*print-namespace-maps* false]
+         (pr-str coords)))]
+    []))
 
 
 (defn project-coords
