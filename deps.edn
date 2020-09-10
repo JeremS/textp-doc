@@ -1,9 +1,9 @@
 {:paths ["src/main/"]
 
- :deps {fr.jeremyschoffen/textp-eval-alpha   {:mvn/version "0"}
-        fr.jeremyschoffen/textp-html-alpha   {:mvn/version "0"}
-        fr.jeremyschoffen/textp-lib-alpha    {:mvn/version "0"}
-        fr.jeremyschoffen/textp-reader-alpha {:mvn/version "0"}
+ :deps {fr.jeremyschoffen/textp-eval-alpha   {:mvn/version "1"}
+        fr.jeremyschoffen/textp-html-alpha   {:mvn/version "1"}
+        fr.jeremyschoffen/textp-lib-alpha    {:mvn/version "1"}
+        fr.jeremyschoffen/textp-reader-alpha {:mvn/version "1"}
         exoscale/ex {:mvn/version "0.3.13"}}
 
 
@@ -15,5 +15,5 @@
                   :extra-deps {lambdaisland/kaocha {:mvn/version "0.0-541"}
                                lambdaisland/kaocha-cljs {:mvn/version "0.0-51"}}}
 
-           :build {:extra-paths ["scripts" "src/doc"]
-                   :extra-deps {fr.jeremyschoffen/mbt-alpha-unstable {:mvn/version "8"}}}}}
+           :build {:extra-paths ["build" "src/build"]
+                   :extra-deps {fr.jeremyschoffen/mbt-alpha {:mvn/version "9"}}}}}
